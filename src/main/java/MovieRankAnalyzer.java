@@ -20,7 +20,7 @@ public class MovieRankAnalyzer {
         JavaPairRDD<String, String> moviePairRDD = movieRDD.mapToPair(
                 new PairFunction<String, String, String>() {
                     public Tuple2<String, String> call(String s) throws Exception {
-                        String[] tokens = s.split(",");
+                        String[] tokens = s.split(";");
                         String movieid = tokens[0];
                         String title = tokens[1];
                         return new Tuple2<String, String>(movieid, title);
@@ -60,16 +60,18 @@ public class MovieRankAnalyzer {
                     }
                 }
         );
-        JavaPairRDD<String, Float> avgRDD = finalRDD.mapToPair(
-                new PairFunction<Tuple2<String, Tuple2<Float, Integer>>, String, Float>() {
-                    public Tuple2<String, Float> call(Tuple2<String, Tuple2<Float, Integer>> stringTuple2Tuple2) throws Exception {
+        JavaPairRDD<String, Tuple2<Float, Integer>> avgRDD = finalRDD.mapToPair(
+                new PairFunction<Tuple2<String, Tuple2<Float, Integer>>, String, Tuple2<Float, Integer>>() {
+                    public Tuple2<String, Tuple2<Float, Integer>> call(Tuple2<String, Tuple2<Float, Integer>> stringTuple2Tuple2) throws Exception {
                         Float scoreSum = stringTuple2Tuple2._2._1;
                         Integer countSum = stringTuple2Tuple2._2._2;
                         Float scoreAvg = new Float(scoreSum/countSum);
-                        return new Tuple2<String, Float>(stringTuple2Tuple2._1, scoreAvg);
+                        return new Tuple2(stringTuple2Tuple2._1, new Tuple2(scoreAvg, countSum));
                     }
                 }
         );
+        //JavaPairRDD<String,Tuple2<Float, Integer>> sortedRDD = avgRDD.sortByKey();
+
         avgRDD.saveAsTextFile("output/avg");
 
     }
