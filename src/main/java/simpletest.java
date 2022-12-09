@@ -69,17 +69,28 @@ public class simpletest {
                     }
                 }
         );
-        JavaPairRDD<String, Float> avgRDD = finalRDD.mapToPair(
-                new PairFunction<Tuple2<String, Tuple2<Float, Integer>>, String, Float>() {
-                    public Tuple2<String, Float> call(Tuple2<String, Tuple2<Float, Integer>> stringTuple2Tuple2) throws Exception {
+        JavaPairRDD<Tuple2<Float,Integer>, String> avgRDD = finalRDD.mapToPair(
+                new PairFunction<Tuple2<String, Tuple2<Float, Integer>>, Tuple2<Float, Integer>, String>() {
+                    public Tuple2<Tuple2<Float,Integer>, String> call(Tuple2<String, Tuple2<Float, Integer>> stringTuple2Tuple2) throws Exception {
                         Float scoreSum = stringTuple2Tuple2._2._1;
                         Integer countSum = stringTuple2Tuple2._2._2;
                         Float scoreAvg = new Float(scoreSum/countSum);
-                        return new Tuple2<String, Float>(stringTuple2Tuple2._1, scoreAvg);
+                        return new Tuple2( new Tuple2(scoreAvg, countSum), stringTuple2Tuple2._1);
                     }
                 }
         );
-        avgRDD.saveAsTextFile("output/test");
+
+        JavaPairRDD<Tuple2<Float,Integer>, String> sortedRDD = avgRDD.sortByKey(new TupleComparator());
+
+        JavaPairRDD<String, Tuple2<Integer, Float>> rankedRDD = sortedRDD.mapToPair(
+                new PairFunction<Tuple2<Tuple2<Float,Integer>, String>, String, Tuple2<Integer, Float>>() {
+                    public Tuple2<String, Tuple2<Integer, Float>> call(Tuple2<Tuple2<Float,Integer>, String> tuple2FloatTuple2) throws Exception {
+                        return new Tuple2<>(tuple2FloatTuple2._2, new Tuple2(tuple2FloatTuple2._1._2, tuple2FloatTuple2._1._1));
+                    }
+                }
+        ).repartition(10);
+
+        rankedRDD.saveAsTextFile("output/test");
 
     }
 }
