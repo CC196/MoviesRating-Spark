@@ -11,9 +11,8 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 public class UserAnalyzer {
-    public static void main(String[] args) {
+    public static void getUserAnalyzer(String SelectUserID) {
 
-        Integer SelectUserID = new Integer(args[0]);
         //Integer SelectUserID = new Integer("99");
         SparkConf sparkConf = new SparkConf()
                 .setAppName("User Analysis")

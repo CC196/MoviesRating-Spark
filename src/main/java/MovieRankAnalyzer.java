@@ -8,7 +8,7 @@ import org.apache.spark.api.java.function.PairFunction;
 import scala.Tuple2;
 
 public class MovieRankAnalyzer {
-    public static void main(String[] args) {
+    public static void getReport() {
         SparkConf sparkConf = new SparkConf()
                 .setAppName("Movie's Score")
                 .setMaster("local[*]");  // Delete this line when submitting to a cluster
