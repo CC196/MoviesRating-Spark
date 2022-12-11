@@ -10,7 +10,7 @@
 1. Main.java to take user input to choose which function to perform
 2. MovieRankAnalyzer.java for functionalities 1. JavaRDD reads ratings.csv and movies.csv, then sets movieid as key with select info as value. Join both JavaPairRDD and reducebykey to group by movieid and calculate. Using TupleComparator.java to sort the RDD. A class in movies.jar. Save local files.
 3. UserAnalyzer.java for functionalities 2. Take input as UserID to filter in the program. JavaRDD read ratings.csv and tags.csv, userid as key. Join movie.csv to get movies’ titles. Sorted by Date/Time. A class in movies.jar. Save local files.
-4. GenreTrendAnalyzer.java for functionalities 2. Take input as genre to filter in the program. JavaRDD read ratings.csv, movieId as key. Join movie.csv for getting movies’ title. A class in movies.jar. Save local files.
+4. GenreTrendAnalyzer.java for functionalities 2. Take input as genre to filter in the program. JavaRDD read movies.csv, movieId as key. Join rating table for timestamps. Count for the genre of movies by years. A class in movies.jar. Save local files.
 5. TupleComparator.java for tuple key sorting.
 6. Movies.jar
 7. Input files: movies.csv delimiter with “;”, ratings.csv, tags.csv
