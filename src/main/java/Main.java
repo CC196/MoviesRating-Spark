@@ -1,5 +1,3 @@
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -27,7 +25,8 @@ public class Main {
             String trend = scanner.next();
             System.out.println("Running Trend Analysis...");
             GenreTrendAnalyzer.getReport(trend);
+        } else {
+            System.out.println("Option invalid..");
         }
-        System.out.println("Option invalid..");
     }
 }
