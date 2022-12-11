@@ -13,7 +13,7 @@ import java.util.Date;
 public class UserAnalyzer {
     public static void getUserAnalyzer(String SelectUserID) {
 
-        //Integer SelectUserID = new Integer("99");
+        //Integer SelectUserID = new Integer("20");
         SparkConf sparkConf = new SparkConf()
                 .setAppName("User Analysis")
                 .setMaster("local[*]");  // Delete this line when submitting to a cluster
@@ -46,7 +46,6 @@ public class UserAnalyzer {
                     }
                 }
         );
-        if(SUtagsRDD.isEmpty())System.out.println("No Tags");
 
         JavaPairRDD<String, Tuple2< String, Date>> RURDD = SelectUserRDD.mapToPair(
                 new PairFunction<String, String, Tuple2< String, Date>>() {
@@ -99,7 +98,7 @@ public class UserAnalyzer {
                         return new Tuple2(stringTuple2Tuple2._2._1._2, new Tuple2<>(stringTuple2Tuple2._2._2._1, stringTuple2Tuple2._2._1._1));
                     }
                 }
-        ).sortByKey();
+        ).sortByKey(false);
         String savepath = "output/user" + SelectUserID;
         finalRDD.saveAsTextFile(savepath);
 
