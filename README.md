@@ -16,9 +16,12 @@ Prepare by: Yangling Cai, Kevin Huang
 ## GitHub Location of Code
 https://github.com/CC196/MoviesRating-Spark
 ## Deployment Instructions
-- Require Apache Spark installed 
-- Clone or download from GitHub 
+- Require Apache Spark installed
+- Clone or download from GitHub
 - Unzip the files.zip, then copy all 3 csv files and paste back to the folder.
+- Download .jar file from Canvas
+- Place csv files in the same folder with .jar file
+
 ## Steps to Run the Application
 1. Open folder in terminal where .jar file located
 2. Enter command spark-submit --class Main Movies.jar
