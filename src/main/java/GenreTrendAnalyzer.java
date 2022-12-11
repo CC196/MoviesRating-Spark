@@ -74,7 +74,7 @@ public class GenreTrendAnalyzer {
                 }
         );
 
-        JavaPairRDD<String, Integer> finalRDD = sumCntRDD.reduceByKey((v1, v2) -> (v1 + v2));
+        JavaPairRDD<String, Integer> finalRDD = sumCntRDD.reduceByKey((v1, v2) -> (v1 + v2)).repartition(5);
 
         finalRDD.saveAsTextFile("output/genre_trend/" + movieType);
     }
