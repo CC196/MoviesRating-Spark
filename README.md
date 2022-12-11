@@ -19,9 +19,9 @@
 https://github.com/CC196/MoviesRating-Spark
 ## Deployment Instructions
 ## Steps to Run the Application
-1. Open terminal where .jar file located
+1. Open folder in terminal where .jar file located
 2. Enter command spark-submit --class Main Movies.jar
-3. Select analyst to run
+3. Select analysis to run
 ## Test Results 
 output/avg
 (Forrest Gump (1994),(3518,4.0579877))
