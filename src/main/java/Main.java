@@ -28,5 +28,6 @@ public class Main {
             System.out.println("Running Trend Analysis...");
             GenreTrendAnalyzer.getReport(trend);
         }
+        System.out.println("Option invalid..");
     }
 }
