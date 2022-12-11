@@ -1,7 +1,6 @@
 # MoviesRating-Spark
 # CPSC 531 Final Project
-## Prepare by: Yangling Cai, Kevin Huang 
-
+Prepare by: Yangling Cai, Kevin Huang
 ## Functionalities  
 1. Analyze movies’ avg ratings and the total count of ratings by the users. Sorted by the total count of ratings.
 2. Analyze selected user’s rating and tags amount with movie title and time.
@@ -14,16 +13,18 @@
 5. TupleComparator.java for tuple key sorting.
 6. Movies.jar
 7. Input files: movies.csv delimiter with “;”, ratings.csv, tags.csv
-
 ## GitHub Location of Code
 https://github.com/CC196/MoviesRating-Spark
 ## Deployment Instructions
+- Require Apache Spark installed 
+- Clone or download from GitHub 
+- Unzip the files.zip, then copy all 3 csv files and paste back to the folder.
 ## Steps to Run the Application
 1. Open folder in terminal where .jar file located
 2. Enter command spark-submit --class Main Movies.jar
 3. Select analysis to run
-## Test Results 
-output/avg
+## Test Results Sample
+**output/avg**
 (Forrest Gump (1994),(3518,4.0579877))
 (Shawshank Redemption, The (1994),(3488,4.4360666))
 (Pulp Fiction (1994),(3418,4.1824164))
@@ -35,7 +36,7 @@ output/avg
 (Fight Club (1999),(2530,4.2262845))
 (Braveheart (1995),(2516,3.9974165))
 
-output/user99
+**output/user99**
 (Sun Nov 26 10:10:09 PST 2017,(Shawshank Redemption, The (1994),5))
 (Sun Nov 26 10:10:34 PST 2017,(Godfather, The (1972),3))
 (Sun Nov 26 10:10:37 PST 2017,(Silence of the Lambs, The (1991),3))
@@ -48,7 +49,7 @@ output/user99
 (Sun Nov 26 10:11:17 PST 2017,(Pulp Fiction (1994),4))
 (Sun Nov 26 10:11:27 PST 2017,(Star Wars: Episode IV - A New Hope (1977),2))
 
-output/genre_trend/action
+**output/genre_trend/action**
 (2007,278832)
 (2008,317096)
 (2009,237307)
